@@ -32,7 +32,7 @@ function App() {
           {privateRoutes.map(item => {
             if (!isAuth) {
               return <Route key={item.path} path={item.path} element={
-                <Navigate key={item.path} to='/login' />
+                <Navigate key={item.path} to='/' />
               }
               />
             }
