@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const counterSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: {
     id: "",
     fullname: "",
@@ -31,11 +31,11 @@ export const counterSlice = createSlice({
       state.username = "";
       state.accessToken = "";
       state.refreshToken = "";
-    }
+    },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { updateUser, resetUser } = counterSlice.actions
+export const { updateUser, resetUser } = counterSlice.actions;
 
-export default counterSlice.reducer
+export default counterSlice.reducer;

@@ -3,31 +3,31 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { createUser } from "../../services/userServices"
+import { createUser } from "../../services/userServices";
 
 const checkUserInfo = (formData) => {
   if (formData.full_name.length === 0) {
-    return [false, "Enter your fullname"]
+    return [false, "Enter your fullname"];
   }
   if (formData.username.length < 8) {
-    return [false, "Use 8 characters or more for your username"]
+    return [false, "Use 8 characters or more for your username"];
   }
   if (formData.password.length < 8) {
-    return [false, "Use 8 characters or more for your password"]
+    return [false, "Use 8 characters or more for your password"];
   }
   if (formData.password !== formData.confirm_password) {
     return [false, "Those passwords didn't match. Try again."];
   }
   return [true, ""];
-}
+};
 
 const SignUp = () => {
-  const isAuth = useSelector(state => state.auth.isAuth);
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const [formData, setFormData] = useState({
     full_name: "",
-    username: "",
-    password: "",
-    confirm_password: ""
+    username: "luongson1208",
+    password: "123456789",
+    confirm_password: "",
   });
   const [errMessage, setErrMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +37,7 @@ const SignUp = () => {
     if (isAuth) {
       navigate("/dashboard");
     }
-  }, [isAuth, navigate])
+  }, [isAuth, navigate]);
 
   const signup = async () => {
     const [isUserValid, errText] = checkUserInfo(formData);
@@ -55,7 +55,7 @@ const SignUp = () => {
     } else {
       setErrMessage(errText);
     }
-  }
+  };
 
   return (
     <Loading isLoading={isLoading}>
@@ -63,10 +63,14 @@ const SignUp = () => {
         <div className="flex flex-col gap-y-4">
           <div className="flex flex-col gap-y-6 mt-10 p-8 rounded-md w-[350px] border border-blue-300">
             <p className="text-center text-xl font-bold">Smart farm</p>
-            <p className="text-gray-500 font-medium text-center">Sign up to control devices and schedule</p>
+            <p className="text-gray-500 font-medium text-center">
+              Sign up to control devices and schedule
+            </p>
 
             <div className="flex justify-center cursor-pointer">
-              <p className="text-sm font-bold text-gray-500">Log in with Google</p>
+              <p className="text-sm font-bold text-gray-500">
+                Log in with Google
+              </p>
             </div>
 
             <div className="flex items-center justify-between">
@@ -82,12 +86,10 @@ const SignUp = () => {
                   id="fullname"
                   value={formData.full_name}
                   onChange={(e) => {
-                    setFormData(prev => (
-                      {
-                        ...prev,
-                        full_name: e.target.value
-                      }
-                    ))
+                    setFormData((prev) => ({
+                      ...prev,
+                      full_name: e.target.value,
+                    }));
                   }}
                   className="block w-full pt-3 pb-1 px-3 text-gray-900 bg-transparent rounded-md border border-blue-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=""
@@ -107,12 +109,10 @@ const SignUp = () => {
                   id="username"
                   value={formData.username}
                   onChange={(e) => {
-                    setFormData(prev => (
-                      {
-                        ...prev,
-                        username: e.target.value
-                      }
-                    ))
+                    setFormData((prev) => ({
+                      ...prev,
+                      username: e.target.value,
+                    }));
                   }}
                   className="block w-full pt-3 pb-1 px-3 text-gray-900 bg-transparent rounded-md border border-blue-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=""
@@ -132,12 +132,10 @@ const SignUp = () => {
                   id="password"
                   value={formData.password}
                   onChange={(e) => {
-                    setFormData(prev => (
-                      {
-                        ...prev,
-                        password: e.target.value
-                      }
-                    ))
+                    setFormData((prev) => ({
+                      ...prev,
+                      password: e.target.value,
+                    }));
                   }}
                   className="block w-full pt-3 pb-1 px-3 text-gray-900 bg-transparent rounded-md border border-blue-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=""
@@ -157,12 +155,10 @@ const SignUp = () => {
                   id="confirm_password"
                   value={formData.confirm_password}
                   onChange={(e) => {
-                    setFormData(prev => (
-                      {
-                        ...prev,
-                        confirm_password: e.target.value
-                      }
-                    ))
+                    setFormData((prev) => ({
+                      ...prev,
+                      confirm_password: e.target.value,
+                    }));
                   }}
                   className="block w-full pt-3 pb-1 px-3 text-gray-900 bg-transparent rounded-md border border-blue-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=""
@@ -176,8 +172,23 @@ const SignUp = () => {
                 </label>
               </div>
 
-              <p className="text-gray-500 text-xs text-center mt-2">People who use our service may have uploaded your contact information to Smartfarm. <span className="text-blue-500 cursor-pointer">Learn More</span></p>
-              <p className="text-gray-500 text-xs text-center">By signing up, you agree to our <span className="text-blue-500 cursor-pointer">Terms</span> , <span className="text-blue-500 cursor-pointer">Privacy Policy</span> and <span className="text-blue-500 cursor-pointer">Cookies Policy</span>.</p>
+              <p className="text-gray-500 text-xs text-center mt-2">
+                People who use our service may have uploaded your contact
+                information to Smartfarm.{" "}
+                <span className="text-blue-500 cursor-pointer">Learn More</span>
+              </p>
+              <p className="text-gray-500 text-xs text-center">
+                By signing up, you agree to our{" "}
+                <span className="text-blue-500 cursor-pointer">Terms</span> ,{" "}
+                <span className="text-blue-500 cursor-pointer">
+                  Privacy Policy
+                </span>{" "}
+                and{" "}
+                <span className="text-blue-500 cursor-pointer">
+                  Cookies Policy
+                </span>
+                .
+              </p>
 
               <button
                 onClick={signup}
@@ -188,15 +199,19 @@ const SignUp = () => {
 
               <p className="text-red-600 text-sm">{errMessage}</p>
             </div>
-
           </div>
           <div className="border border-blue-300 p-4 rounded-md text-center">
-            <p>Have an account? <span className="text-blue-500 font-bold cursor-pointer"><Link to="/login">Log in</Link></span></p>
+            <p>
+              Have an account?{" "}
+              <span className="text-blue-500 font-bold cursor-pointer">
+                <Link to="/login">Log in</Link>
+              </span>
+            </p>
           </div>
         </div>
       </div>
     </Loading>
-  )
-}
+  );
+};
 
 export default SignUp;

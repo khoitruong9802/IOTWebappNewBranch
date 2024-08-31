@@ -5,13 +5,13 @@ import { useDispatch } from "react-redux";
 import Loading from "../../components/Loading";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { loginUser } from "../../services/userServices"
+import { loginUser } from "../../services/userServices";
 
 const Login = () => {
-  const isAuth = useSelector(state => state.auth.isAuth);
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const [formData, setFormData] = useState({
     username: "",
-    password: ""
+    password: "",
   });
   const [errMessage, setErrMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -22,11 +22,11 @@ const Login = () => {
     if (isAuth) {
       navigate("/dashboard");
     }
-  }, [isAuth, navigate])
+  }, [isAuth, navigate]);
 
   const login = async () => {
     setIsLoading(true);
-    try {      
+    try {
       const res = await loginUser(formData);
       if (res.status === 200) {
         localStorage.setItem("refreshToken", res.data.refresh_token);
@@ -35,11 +35,13 @@ const Login = () => {
         navigate("/dashboard");
       }
     } catch (err) {
-      setErrMessage("Sorry, your password was incorrect. Please double-check your password.");
+      setErrMessage(
+        "Sorry, your username or your password was incorrect. Please double-check your password."
+      );
       console.log(err);
     }
     setIsLoading(false);
-  }
+  };
 
   return (
     <Loading isLoading={isLoading}>
@@ -54,10 +56,10 @@ const Login = () => {
                   id="username"
                   value={formData.username}
                   onChange={(e) => {
-                    setFormData(prev => ({
+                    setFormData((prev) => ({
                       ...prev,
-                      username: e.target.value
-                    }))
+                      username: e.target.value,
+                    }));
                   }}
                   className="block w-full pt-3 pb-1 px-3 text-gray-900 bg-transparent rounded-md border border-blue-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=""
@@ -77,10 +79,10 @@ const Login = () => {
                   id="password"
                   value={formData.password}
                   onChange={(e) => {
-                    setFormData(prev => ({
+                    setFormData((prev) => ({
                       ...prev,
-                      password: e.target.value
-                    }))
+                      password: e.target.value,
+                    }));
                   }}
                   className="block w-full pt-3 pb-1 px-3 text-gray-900 bg-transparent rounded-md border border-blue-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=""
@@ -111,7 +113,9 @@ const Login = () => {
             </div>
 
             <div className="flex justify-center cursor-pointer">
-              <p className="text-sm font-bold text-gray-500">Log in with Google</p>
+              <p className="text-sm font-bold text-gray-500">
+                Log in with Google
+              </p>
             </div>
 
             <div className="text-center cursor-pointer">
@@ -119,12 +123,17 @@ const Login = () => {
             </div>
           </div>
           <div className="border border-blue-300 p-4 rounded-md text-center">
-            <p>Don&apos;t have an account? <span className="text-blue-500 font-bold cursor-pointer"><Link to="/signup">Sign up</Link></span></p>
+            <p>
+              Don&apos;t have an account?{" "}
+              <span className="text-blue-500 font-bold cursor-pointer">
+                <Link to="/signup">Sign up</Link>
+              </span>
+            </p>
           </div>
         </div>
       </div>
     </Loading>
-  )
-}
+  );
+};
 
 export default Login;
