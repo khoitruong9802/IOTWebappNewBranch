@@ -1,10 +1,6 @@
 import React from "react";
 import { IoMdSearch } from "react-icons/io";
-import { FiMonitor } from "react-icons/fi";
-import { CiClock1 } from "react-icons/ci";
-import { GrSchedule } from "react-icons/gr";
-import { IoIosContact } from "react-icons/io";
-import { FcSupport } from "react-icons/fc";
+import { FiMonitor, FiVideo } from "react-icons/fi";
 import { IoIosArrowDropdown } from "react-icons/io";
 
 const Menu = [

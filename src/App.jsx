@@ -33,6 +33,7 @@ function App() {
               />
             );
           })}
+
           {privateRoutes.map((item) => {
             if (!isAuth) {
               return (
