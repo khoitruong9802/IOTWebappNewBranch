@@ -5,6 +5,7 @@ import { CiClock1 } from "react-icons/ci";
 import { GrSchedule } from "react-icons/gr";
 import { IoIosContact } from "react-icons/io";
 import { FcSupport } from "react-icons/fc";
+import { IoIosArrowDropdown } from "react-icons/io";
 
 const Menu = [
   {
@@ -12,29 +13,144 @@ const Menu = [
     name: "Home",
     link: "/#",
   },
+  // {
+  //   id: 2,
+  //   name: "Monitor",
+  //   link: "/#",
+  // },
+  // {
+  //   id: 3,
+  //   name: "Timing",
+  //   link: "/#",
+  // },
+  // {
+  //   id: 4,
+  //   name: "Scheduler",
+  //   link: "/#",
+  // },
+  // {
+  //   id: 5,
+  //   name: "Contacts",
+  //   link: "/#",
+  // },
+  // {
+  //   id: 6,
+  //   name: "Supports",
+  //   link: "/#",
+  // },
+];
+
+const DropdownMonitor = [
+  {
+    id: 1,
+    name: "System Status",
+    link: "/#",
+  },
   {
     id: 2,
-    name: "Monitor",
+    name: "Soil Moisture",
     link: "/#",
   },
   {
     id: 3,
-    name: "Timing",
+    name: "Real-time",
     link: "/#",
   },
   {
     id: 4,
-    name: "Scheduler",
+    name: "Activity History",
+    link: "/#",
+  },
+];
+
+const DropdownTiming = [
+  {
+    id: 1,
+    name: "Setting Time",
     link: "/#",
   },
   {
-    id: 5,
+    id: 2,
+    name: "Timer History",
+    link: "/#",
+  },
+  {
+    id: 3,
+    name: "Change Time",
+    link: "/#",
+  },
+  {
+    id: 4,
+    name: "Notifications",
+    link: "/#",
+  },
+];
+
+const DropdownScheduler = [
+  {
+    id: 1,
+    name: "Add",
+    link: "/#",
+  },
+  {
+    id: 2,
+    name: "Delete",
+    link: "/#",
+  },
+  {
+    id: 3,
+    name: "Update",
+    link: "/#",
+  },
+  {
+    id: 4,
+    name: "Managements",
+    link: "/#",
+  },
+];
+
+const DropdownSupport = [
+  {
+    id: 1,
+    name: "FAQ",
+    link: "/#",
+  },
+  {
+    id: 2,
+    name: "Instructions",
+    link: "/#",
+  },
+  {
+    id: 3,
+    name: "Online Supporting",
+    link: "/#",
+  },
+  {
+    id: 4,
     name: "Contacts",
     link: "/#",
   },
+];
+
+const DropdownAccount = [
   {
-    id: 6,
-    name: "Supports",
+    id: 1,
+    name: "Information",
+    link: "/#",
+  },
+  {
+    id: 2,
+    name: "Sign In",
+    link: "/#",
+  },
+  {
+    id: 3,
+    name: "Sign Up",
+    link: "/#",
+  },
+  {
+    id: 4,
+    name: "Log Out",
     link: "/#",
   },
 ];
@@ -62,7 +178,7 @@ const Home = () => {
               <input
                 type="text"
                 placeholder="Search your schedule ..."
-                className="w-[200px] sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-full border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary"
+                className="w-[200px] sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-full border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary dark:border-gray-500 dark:bg-gray-800"
               />
               <IoMdSearch className="text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3" />
             </div>
@@ -73,11 +189,11 @@ const Home = () => {
               className="group-hover:block hidden transition-all duration-200"
               onClick={() => alert("Monitoring...")}
             >
-              Monitoring
+              KKS
             </span>
             <FiMonitor className="text-xl text-white drop-shadow-sm cursor-pointer"></FiMonitor>
 
-            <span
+            {/* <span
               className="group-hover:block hidden transition-all duration-200"
               onClick={() => alert("Timing...")}
             >
@@ -107,7 +223,7 @@ const Home = () => {
             >
               Support
             </span>
-            <FcSupport className="text-xl text-white drop-shadow-sm cursor-pointer"></FcSupport>
+            <FcSupport className="text-xl text-white drop-shadow-sm cursor-pointer"></FcSupport> */}
           </button>
         </div>
       </div>
@@ -126,9 +242,120 @@ const Home = () => {
             </li>
           ))}
 
+          <li className="group relative cursor-pointer">
+            <a href="#" className="flex items-center gap-[2px] py-2">
+              Monitor
+              <span>
+                <IoIosArrowDropdown className="text-gray-500" />
+              </span>
+            </a>
+            <div className="absolute z-[9999] hidden group-hover:block w-[150px] rounded-md bg-white p-2 text-black shadow-md">
+              <ul>
+                {DropdownMonitor.map((data) => (
+                  <li key={data.id}>
+                    <a
+                      href={data.link}
+                      className="inline-block w-full rounded-md p-2 hover:bg-primary/20"
+                    >
+                      {data.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+
           {/* simple dropdown */}
-          <li>
-            
+          <li className="group relative cursor-pointer">
+            <a href="#" className="flex items-center gap-[2px] py-2">
+              Timing
+              <span>
+                <IoIosArrowDropdown className="text-gray-500" />
+              </span>
+            </a>
+            <div className="absolute z-[9999] hidden group-hover:block w-[150px] rounded-md bg-white p-2 text-black shadow-md">
+              <ul>
+                {DropdownTiming.map((data) => (
+                  <li key={data.id}>
+                    <a
+                      href={data.link}
+                      className="inline-block w-full rounded-md p-2 hover:bg-primary/20"
+                    >
+                      {data.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+
+          <li className="group relative cursor-pointer">
+            <a href="#" className="flex items-center gap-[2px] py-2">
+              Scheduler
+              <span>
+                <IoIosArrowDropdown className="text-gray-500" />
+              </span>
+            </a>
+            <div className="absolute z-[9999] hidden group-hover:block w-[150px] rounded-md bg-white p-2 text-black shadow-md">
+              <ul>
+                {DropdownScheduler.map((data) => (
+                  <li key={data.id}>
+                    <a
+                      href={data.link}
+                      className="inline-block w-full rounded-md p-2 hover:bg-primary/20"
+                    >
+                      {data.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+
+          <li className="group relative cursor-pointer">
+            <a href="#" className="flex items-center gap-[2px] py-2">
+              Supports
+              <span>
+                <IoIosArrowDropdown className="text-gray-500" />
+              </span>
+            </a>
+            <div className="absolute z-[9999] hidden group-hover:block w-[150px] rounded-md bg-white p-2 text-black shadow-md">
+              <ul>
+                {DropdownSupport.map((data) => (
+                  <li key={data.id}>
+                    <a
+                      href={data.link}
+                      className="inline-block w-full rounded-md p-2 hover:bg-primary/20"
+                    >
+                      {data.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+
+          <li className="group relative cursor-pointer">
+            <a href="#" className="flex items-center gap-[2px] py-2">
+              Account
+              <span>
+                <IoIosArrowDropdown className="text-gray-500" />
+              </span>
+            </a>
+            <div className="absolute z-[9999] hidden group-hover:block w-[150px] rounded-md bg-white p-2 text-black shadow-md">
+              <ul>
+                {DropdownAccount.map((data) => (
+                  <li key={data.id}>
+                    <a
+                      href={data.link}
+                      className="inline-block w-full rounded-md p-2 hover:bg-primary/20"
+                    >
+                      {data.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
