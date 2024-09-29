@@ -2,6 +2,7 @@ import React from "react";
 import { IoMdSearch } from "react-icons/io";
 import { FiMonitor, FiVideo } from "react-icons/fi";
 import { IoIosArrowDropdown } from "react-icons/io";
+import { IoIosNotifications } from "react-icons/io";
 
 const Menu = [
   {
@@ -44,16 +45,16 @@ const DropdownMonitor = [
   },
   {
     id: 2,
-    name: "Soil Moisture",
+    name: "Humidity Sensors",
     link: "/#",
   },
+  // {
+  //   id: 3,
+  //   name: "Real-time",
+  //   link: "/#",
+  // },
   {
     id: 3,
-    name: "Real-time",
-    link: "/#",
-  },
-  {
-    id: 4,
     name: "Activity History",
     link: "/#",
   },
@@ -62,7 +63,7 @@ const DropdownMonitor = [
 const DropdownTiming = [
   {
     id: 1,
-    name: "Setting Time",
+    name: "Setting",
     link: "/#",
   },
   {
@@ -70,13 +71,13 @@ const DropdownTiming = [
     name: "Timer History",
     link: "/#",
   },
+  // {
+  //   id: 3,
+  //   name: "Change Time",
+  //   link: "/#",
+  // },
   {
     id: 3,
-    name: "Change Time",
-    link: "/#",
-  },
-  {
-    id: 4,
     name: "Notifications",
     link: "/#",
   },
@@ -85,24 +86,24 @@ const DropdownTiming = [
 const DropdownScheduler = [
   {
     id: 1,
-    name: "Add",
+    name: "Setting",
     link: "/#",
   },
   {
     id: 2,
-    name: "Delete",
+    name: "Management",
     link: "/#",
   },
-  {
-    id: 3,
-    name: "Update",
-    link: "/#",
-  },
-  {
-    id: 4,
-    name: "Managements",
-    link: "/#",
-  },
+  // {
+  //   id: 3,
+  //   name: "Update",
+  //   link: "/#",
+  // },
+  // {
+  //   id: 4,
+  //   name: "Managements",
+  //   link: "/#",
+  // },
 ];
 
 const DropdownSupport = [
@@ -118,7 +119,7 @@ const DropdownSupport = [
   },
   {
     id: 3,
-    name: "Online Supporting",
+    name: "Version OTA",
     link: "/#",
   },
   {
@@ -160,11 +161,11 @@ const Header = () => {
           <div>
             <a href="#" className="font-bold text-2xl sm:text-3xl flex gap-2">
               <img
-                src="/src/assets/images/icon.png"
+                src="/src/assets/images/logo-agriculture.jpg"
                 alt="logo"
                 className="w-10"
               />
-              KKS Management Scheduler
+              KKS's Thesis
             </a>
           </div>
 
@@ -188,6 +189,7 @@ const Header = () => {
               KKS
             </span>
             <FiMonitor className="text-xl text-white drop-shadow-sm cursor-pointer"></FiMonitor>
+            <IoIosNotifications className="text-xl text-white drop-shadow-sm cursor-pointer"></IoIosNotifications>
 
             {/* <span
               className="group-hover:block hidden transition-all duration-200"
@@ -240,7 +242,7 @@ const Header = () => {
 
           <li className="group relative cursor-pointer">
             <a href="#" className="flex items-center gap-[2px] py-2">
-              Monitor
+              Monitoring
               <span>
                 <IoIosArrowDropdown className="text-gray-500" />
               </span>

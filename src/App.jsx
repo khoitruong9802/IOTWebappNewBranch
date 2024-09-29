@@ -3,8 +3,20 @@ import { privateRoutes, publicRoutes } from "./routes";
 import DefaultLayout from "./components/Layout/DefaultLayout";
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
+  React.useEffect(() => {
+    AOS.init({
+      offset: 100,
+      duration: 800,
+      easing: "ease-in-sine",
+      delay: 100,
+    });
+    AOS.refresh();
+  }, []);
+
   const isAuth = useSelector((state) => state.auth.isAuth);
 
   return (
