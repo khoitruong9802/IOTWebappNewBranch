@@ -1,26 +1,29 @@
-import Image1 from "../../assets/images/main1.jpg";
-import Image2 from "../../assets/images/main2.jpg";
-import Image3 from "../../assets/images/main3.jpg";
+import Image1 from "../../assets/images/monitor.jfif";
+import Image2 from "../../assets/images/timing.jpg";
+import Image3 from "../../assets/images/sched.jfif";
 import Slider from "react-slick";
 
 const ImageList = [
   {
     id: 1,
     img: Image1,
-    title: "Giám sát",
-    description: "Monitoring ...",
+    title: "Monitoring",
+    description:
+      "The irrigation system's monitoring function continuously tracks soil moisture levels, water usage, and environmental conditions such as temperature and humidity using connected sensors. Data is collected and processed in real-time, allowing the system to make informed decisions on when and how much water to apply. This helps optimize water distribution, preventing over- or under-watering, and ensures efficient agricultural irrigation. The monitoring function can also provide alerts for any irregularities and display the collected data on a user-friendly interface for analysis and scheduling adjustments.",
   },
   {
     id: 2,
     img: Image2,
-    title: "Hẹn giờ",
-    description: "Timing ...",
+    title: "Timing",
+    description:
+      "The timer function in the irrigation system allows users to schedule watering cycles at specific intervals. It automates the irrigation process by activating the system to start and stop watering at pre-set times. This ensures that crops receive consistent and timely watering, even without manual intervention. Users can customize the duration and frequency of irrigation based on crop needs or environmental factors, optimizing water usage and improving overall efficiency in agricultural management.",
   },
   {
     id: 3,
     img: Image3,
-    title: "Lập lịch",
-    description: "Scheduling ...",
+    title: "Scheduling",
+    description:
+      "The scheduling function of the irrigation system enables precise planning of watering events based on the needs of crops and environmental conditions. Users can set specific days, times, and durations for irrigation, allowing for flexible, automated management across multiple zones or areas. The system can also adapt schedules based on data from sensors, weather forecasts, or seasonal changes, ensuring optimal water distribution while minimizing waste. This function provides a high level of control, helping to maintain consistent irrigation while improving resource efficiency.",
   },
 ];
 

@@ -5,6 +5,7 @@ import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import React from "react";
 
 function App() {
   React.useEffect(() => {

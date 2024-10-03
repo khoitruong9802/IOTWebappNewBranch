@@ -38,6 +38,7 @@ const MainContent2 = () => {
             Lorem ipsum dolor sit.
           </p>
         </div>
+
         {/* body */}
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-5">
