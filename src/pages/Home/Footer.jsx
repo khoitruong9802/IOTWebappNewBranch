@@ -1,4 +1,4 @@
-import FooterLogo from "../../assets/images/logo.svg";
+import FooterLogo from "/src/assets/images/logo-agriculture.jpg";
 import Banner from "../../assets/images/footer-banner.jpg";
 import {
   FaFacebook,

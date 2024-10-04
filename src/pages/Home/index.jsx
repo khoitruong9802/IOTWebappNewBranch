@@ -8,7 +8,7 @@ import Footer from "./Footer";
 
 const Home = () => {
   return (
-    <div className="flex flex-col justify-start w-full bg-white dark:bg-gray-900 dark:text-white duration-200">
+    <div className="flex flex-col justify-start w-full">
       <Header />
       <MainContent1 />
       {/* <MainContent2 /> */}
