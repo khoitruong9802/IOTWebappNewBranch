@@ -5,19 +5,19 @@ const TestimonialsData = [
   {
     id: 1,
     name: "John Doe",
-    image: "https://via.placeholder.com/150",
+    image: "https://picsum.photos/101/101",
     text: "John Doe",
   },
   {
     id: 2,
     name: "John Doe",
-    image: "https://via.placeholder.com/150",
+    image: "https://picsum.photos/102/102",
     text: "John Doe",
   },
   {
     id: 3,
     name: "John Doe",
-    image: "https://via.placeholder.com/150",
+    image: "https://picsum.photos/103/103",
     text: "John Doe",
   },
 ];
@@ -36,8 +36,6 @@ const Testimonials = () => {
     slidesToScroll: 1,
     infinite: true,
     speed: 500,
-    // slidesToShow: 2,
-    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 10000,
