@@ -49,11 +49,11 @@ const DropdownMonitor = [
     name: "Humidity Sensors",
     link: "/#",
   },
-  // {
-  //   id: 3,
-  //   name: "Real-time",
-  //   link: "/#",
-  // },
+  {
+    id: 3,
+    name: "OTA Version",
+    link: "/otaversion",
+  },
   {
     id: 3,
     name: "Activity History",
@@ -118,11 +118,11 @@ const DropdownSupport = [
     name: "Instructions",
     link: "/#",
   },
-  {
-    id: 3,
-    name: "Version OTA",
-    link: "/#",
-  },
+  // {
+  //   id: 3,
+  //   name: "Version OTA",
+  //   link: "/#",
+  // },
   {
     id: 4,
     name: "Contacts",

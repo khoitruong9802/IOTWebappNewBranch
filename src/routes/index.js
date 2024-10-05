@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import NotFound from "../pages/NotFound";
 import Dashboard from "../pages/Dashboard";
+import OTA from "../pages/OTA";
 import Home from "../pages/Home";
 
 export const publicRoutes = [
@@ -31,6 +32,11 @@ export const publicRoutes = [
   {
     path: "/about",
     component: About,
+  },
+  {
+    path: "/otaversion",
+    component: OTA,
+    layout: null,
   },
   {
     path: "*",
