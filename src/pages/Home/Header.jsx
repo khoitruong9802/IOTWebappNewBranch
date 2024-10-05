@@ -3,6 +3,7 @@ import { IoMdSearch } from "react-icons/io";
 import { FiMonitor, FiVideo } from "react-icons/fi";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosNotifications } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Menu = [
   {
@@ -138,7 +139,7 @@ const DropdownAccount = [
   {
     id: 2,
     name: "Sign In",
-    link: "/#",
+    link: "/login",
   },
   {
     id: 3,
@@ -344,12 +345,18 @@ const Header = () => {
               <ul>
                 {DropdownAccount.map((data) => (
                   <li key={data.id}>
-                    <a
-                      href={data.link}
+                    <Link
+                      to={data.link}
                       className="inline-block w-full rounded-md p-2 hover:bg-primary/20"
                     >
                       {data.name}
-                    </a>
+                    </Link>
+                    {/* <Link
+                      className="inline-block ml-5"
+                      to={"/overview"}
+                    >
+                      <img src="/icon.png" alt="overview" className=" w-10 h-10" />
+                    </Link> */}
                   </li>
                 ))}
               </ul>

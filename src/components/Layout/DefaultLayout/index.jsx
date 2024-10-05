@@ -5,7 +5,6 @@ const DefaultLayout = ({ children }) => {
     <div className="flex justify-start ">
       <Navbar />
       <div className="ml-44 w-full mt-20">{children}</div>
-      <Hero />
     </div>
   );
 };
