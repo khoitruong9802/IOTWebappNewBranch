@@ -20,7 +20,7 @@ const Subscribe = () => {
       <div className="container backdrop-blur-sm py-10">
         <div className="space-y-6 max-w-xl mx-auto">
           <h1 className="text-2xl !text-center sm:text-left sm:text-4xl font-semibold">
-            Get Newest Information From Us
+            Get the latest OTA version from us
           </h1>
           <input
             data-aos="fade-up"

@@ -7,6 +7,7 @@ import {
   FaYoutube,
   FaLocationArrow,
   FaMobileAlt,
+  FaMailBulk,
 } from "react-icons/fa";
 
 const BannerImg = {
@@ -32,6 +33,10 @@ const FooterLinks = [
     links: "/#contact",
   },
   {
+    title: "FAQ",
+    links: "/#faq",
+  },
+  {
     title: "Blog",
     links: "/#blog",
   },
@@ -46,9 +51,17 @@ const Footer = () => {
           <div className="py-8 px-4">
             <h1 className="sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3">
               <img src={FooterLogo} alt="" className="max-w-[50px]" />
-              KKS
+              KKS's Thesis
             </h1>
-            <p>Lorem, ipsum.</p>
+            <p>
+              Our Agricultural Irrigation System provides smart, automated
+              solutions for monitoring, scheduling, and controlling irrigation
+              processes. Designed to enhance efficiency and optimize water
+              usage, our system helps farmers achieve better crop yields while
+              saving time and resources. With real-time monitoring and
+              customizable schedules, it's the perfect tool for modern
+              agriculture.
+            </p>
           </div>
 
           {/* links details */}
@@ -56,7 +69,7 @@ const Footer = () => {
             <div>
               <div className="py-8 px-4 ">
                 <h1 className="sm:text-xl text-xl font-bold sm:text-left text-justify mb-3">
-                  Important
+                  Links
                 </h1>
                 <ul className="flex flex-col gap-3">
                   {FooterLinks.map((link) => (
@@ -90,11 +103,18 @@ const Footer = () => {
               <div className="mt-6">
                 <div className="flex items-center gap-3">
                   <FaLocationArrow />
-                  <p>Noida</p>
+                  <p>
+                    301B9, 268 Ly Thuong Kiet Street, District 10, Ho Chi Minh
+                    City
+                  </p>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 mt-3">
                   <FaMobileAlt />
-                  <p>+84 336147090</p>
+                  <p>113 - Police</p>
+                </div>
+                <div className="flex items-center gap-3 mt-3">
+                  <FaMailBulk />
+                  <p>KKS@hcmut.edu.vn</p>
                 </div>
               </div>
             </div>

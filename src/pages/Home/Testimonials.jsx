@@ -4,21 +4,21 @@ import Slider from "react-slick";
 const TestimonialsData = [
   {
     id: 1,
-    name: "John Doe",
+    name: "Khôi Trương",
     image: "https://picsum.photos/101/101",
-    text: "John Doe",
+    text: "Hệ thống như shit",
   },
   {
     id: 2,
-    name: "John Doe",
+    name: "Kiên Trần",
     image: "https://picsum.photos/102/102",
-    text: "John Doe",
+    text: "1 mình tao làm hết",
   },
   {
     id: 3,
-    name: "John Doe",
+    name: "Sơn Nghiêm",
     image: "https://picsum.photos/103/103",
-    text: "John Doe",
+    text: "Amazing gud chóp em",
   },
 ];
 
@@ -69,13 +69,13 @@ const Testimonials = () => {
         {/* header */}
         <div className="text-center mb-10 max-w-[600px] mx-auto">
           <p data-aos="fade-up" className="text-sm text-primary ">
-            Feedback
+            Feedback From My Customers
           </p>
           <h1 data-aos="fade-up" className="text-3xl font-bold ">
             Testimonials
           </h1>
           <p data-aos="fade-up" className="text-xs text-gray-400">
-            Lorem ipsum dolor sit.
+            KKS
           </p>
         </div>
 
