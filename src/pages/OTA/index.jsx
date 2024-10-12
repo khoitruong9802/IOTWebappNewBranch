@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./OTA.css";
+import "./OTA.css"; // Import file CSS
 import OTAVersion from "./OTAVersion";
 
 function FileUpload() {
@@ -50,7 +50,7 @@ function FileUpload() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen flex-col gap-y-10">
+    <div className="flex items-center justify-center h-screen flex-col gap-y-8">
       <div className="upload-container">
         <h1>Upload Your OTA Version</h1>
         <input type="file" onChange={handleFileChange} />
