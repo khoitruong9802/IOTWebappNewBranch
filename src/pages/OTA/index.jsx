@@ -1,123 +1,65 @@
-import React, { useRef, useState } from "react";
-import "./index.css";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import "./OTA.css";
+import OTAVersion from "./OTAVersion";
 
-const OTA = () => {
-  const inputRef = useRef();
-
+function FileUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [progress, setProgress] = useState(0);
-  const [uploadStatus, setUploadStatus] = useState("select");
+  const [updates, setUpdates] = useState([]);
+
+  const fetchVersion = () => {
+    // Fetch the JSON data from the backend
+    fetch("http://172.28.182.183:5173/upload")
+      .then((response) => response.json())
+      .then((data) => setUpdates(data))
+      .catch((error) => console.error("Error fetching updates:", error));
+  };
+
+  useEffect(() => {
+    fetchVersion();
+  }, []);
 
   const handleFileChange = (event) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0]);
-    }
-  };
-
-  const onChooseFile = () => {
-    inputRef.current.click();
-  };
-
-  const clearFileInput = () => {
-    inputRef.current.value = "";
-    setSelectedFile(null);
-    setProgress(0);
-    setUploadStatus("select");
+    setSelectedFile(event.target.files[0]);
   };
 
   const handleUpload = async () => {
-    if (uploadStatus === "done") {
-      clearFileInput();
+    if (!selectedFile) {
+      alert("Please select a file first!");
       return;
     }
 
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    // Gửi request với file lên server
     try {
-      setUploadStatus("uploading");
-
-      const formData = new FormData();
-      formData.append("file", selectedFile);
-
-      const response = await axios.post(
-        "http://localhost:5173/api/upload",
-        formData,
-        {
-          onUploadProgress: (progressEvent) => {
-            const percentCompleted = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
-            );
-            setProgress(percentCompleted);
-          },
-        }
-      );
-
-      setUploadStatus("done");
+      const response = await fetch("http://172.28.182.183:5173/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (response.ok) {
+        alert("File uploaded successfully!");
+        fetchVersion();
+      } else {
+        alert("File upload failed!");
+      }
     } catch (error) {
-      setUploadStatus("select");
+      console.error("Error uploading file:", error);
+      alert("Error uploading file");
     }
   };
 
   return (
-    <div>
-      <input
-        ref={inputRef}
-        type="file"
-        onChange={handleFileChange}
-        style={{ display: "none" }}
-      />
-
-      {/* Button to trigger the file input dialog */}
-      {!selectedFile && (
-        <button className="file-btn" onClick={onChooseFile}>
-          <span className="material-symbols-outlined">upload</span> Upload File
-        </button>
-      )}
-
-      {selectedFile && (
-        <>
-          <div className="file-card">
-            <span className="material-symbols-outlined icon">description</span>
-
-            <div className="file-info">
-              <div style={{ flex: 1 }}>
-                <h6>{selectedFile?.name}</h6>
-
-                <div className="progress-bg">
-                  <div className="progress" style={{ width: `${progress}%` }} />
-                </div>
-              </div>
-
-              {uploadStatus === "select" ? (
-                <button onClick={clearFileInput}>
-                  <span class="material-symbols-outlined close-icon">
-                    close
-                  </span>
-                </button>
-              ) : (
-                <div className="check-circle">
-                  {uploadStatus === "uploading" ? (
-                    `${progress}%`
-                  ) : uploadStatus === "done" ? (
-                    <span
-                      class="material-symbols-outlined"
-                      style={{ fontSize: "20px" }}
-                    >
-                      check
-                    </span>
-                  ) : null}
-                </div>
-              )}
-            </div>
-          </div>
-          <button className="upload-btn" onClick={handleUpload}>
-            {uploadStatus === "select" || uploadStatus === "uploading"
-              ? "Upload"
-              : "Done"}
-          </button>
-        </>
-      )}
+    <div className="flex items-center justify-center h-screen flex-col gap-y-10">
+      <div className="upload-container">
+        <h1>Upload Your OTA Version</h1>
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={handleUpload}>Upload</button>
+        {selectedFile && <p>File selected: {selectedFile.name}</p>}
+      </div>
+      <OTAVersion updates={updates} />
     </div>
   );
-};
+}
 
-export default OTA;
+export default FileUpload;

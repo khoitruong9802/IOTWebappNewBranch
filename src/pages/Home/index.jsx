@@ -9,6 +9,7 @@ import Footer from "./Footer";
 const Home = () => {
   return (
     <div className="flex flex-col justify-start w-full">
+      {/* <div className=""> */}
       <Header />
       <MainContent1 />
       {/* <MainContent2 /> */}
