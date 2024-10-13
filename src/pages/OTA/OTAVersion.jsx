@@ -1,7 +1,7 @@
 const OTAVersion = ({ updates }) => {
   return (
     <div>
-      <h1>OTA Updates</h1>
+      <h1>OTA Updated Lists</h1>
       <table>
         <thead>
           <tr>

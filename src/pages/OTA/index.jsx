@@ -50,14 +50,17 @@ function FileUpload() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen flex-col gap-y-8">
+    <div className="flex items-center justify-between h-screen gap-y-8">
+      <div className="table-container">
+        <OTAVersion updates={updates} />
+      </div>
+
       <div className="upload-container">
         <h1>Upload Your OTA Version</h1>
         <input type="file" onChange={handleFileChange} />
         <button onClick={handleUpload}>Upload</button>
         {selectedFile && <p>File selected: {selectedFile.name}</p>}
       </div>
-      <OTAVersion updates={updates} />
     </div>
   );
 }
