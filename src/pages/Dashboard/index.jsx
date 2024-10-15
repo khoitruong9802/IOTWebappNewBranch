@@ -78,7 +78,6 @@ const Header = () => {
     </div>
   );
 };
-
 const Schedule = (props) => {
   const [active, setActive] = useState(true);
   const { scheduleName, startTime, stopTime, flow1, flow2, flow3 } = props.data;
@@ -388,17 +387,25 @@ const ScheduleList = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    request.get("/schedule")
-      .then((res) => {
-        setSchedules(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      })
+    setSchedules([{
+      scheduleName: "12",
+      startTime: "12",
+      stopTime: "12",
+      flow1: 12,
+      flow2: 12,
+      flow3: 12,
+    }]);
+    // setIsLoading(true);
+    // request.get("/schedule")
+    //   .then((res) => {
+    //     setSchedules(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   })
+    //   .finally(() => {
+    //     setIsLoading(false);
+    //   })
   }, []);
 
   const addSchedule = (data) => {
