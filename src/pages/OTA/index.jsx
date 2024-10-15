@@ -33,7 +33,7 @@ function FileUpload() {
 
     // Gửi request với file lên server
     try {
-      const response = await fetch("http://localhost:3001/upload", {
+      const response = await fetch("http://172.28.182.183:5173/upload", {
         method: "POST",
         body: formData,
       });
@@ -66,3 +66,6 @@ function FileUpload() {
 }
 
 export default FileUpload;
+
+// 192.168.1.248: LA
+// 192.168.0.195: KAICoffe

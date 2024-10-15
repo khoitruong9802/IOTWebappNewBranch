@@ -6,19 +6,19 @@ const TestimonialsData = [
     id: 1,
     name: "Khôi Trương",
     image: "https://picsum.photos/101/101",
-    text: "Hệ thống như shit",
+    text: "Amazing",
   },
   {
     id: 2,
     name: "Kiên Trần",
     image: "https://picsum.photos/102/102",
-    text: "1 mình tao làm hết",
+    text: "Good",
   },
   {
     id: 3,
     name: "Sơn Nghiêm",
     image: "https://picsum.photos/103/103",
-    text: "Amazing gud chóp em",
+    text: "Excellent",
   },
 ];
 
