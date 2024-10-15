@@ -14,16 +14,16 @@ app.use(fileUpload());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Helper function to generate a timestamp string
-// function getCurrentTimestamp() {
-//   const now = new Date();
-//   const year = now.getFullYear();
-//   const month = String(now.getMonth() + 1).padStart(2, "0");
-//   const day = String(now.getDate()).padStart(2, "0");
-//   const hours = String(now.getHours()).padStart(2, "0");
-//   const minutes = String(now.getMinutes()).padStart(2, "0");
-//   const seconds = String(now.getSeconds()).padStart(2, "0");
-//   return `${year}${month}${day}${hours}${minutes}${seconds}`;
-// }
+function getCurrentTimestamp() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+  return `${year}${month}${day}${hours}${minutes}${seconds}`;
+}
 
 // Helper function to get the latest version
 function getCurrentVersion(directory) {
@@ -34,6 +34,38 @@ function getCurrentVersion(directory) {
   });
   return Math.max(...versions, 1.0); // Start at version 1.0 if none exist
 }
+
+// Handle file uploads with timestamp renaming
+app.post("/upload", (req, res) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send("No files were uploaded.");
+  }
+
+  const uploadedFile = req.files.file;
+  const uploadDir = path.join(__dirname, "uploads");
+
+  // Get current version and increment it by 0.1
+  const currentVersion = getCurrentVersion(uploadDir);
+  const newVersion = (parseFloat(currentVersion) + 0.1).toFixed(1);
+
+  // Generate the actual file name to store in the uploads folder using the timestamp and 'firmware.bin'
+  const newFileName = `${getCurrentTimestamp()}_firmware.bin`;
+
+  const uploadPath = path.join(uploadDir, `${newFileName}`); // Keep original extension in the actual file
+
+  uploadedFile.mv(uploadPath, (err) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    // Send response including the new version for the front-end
+    res.json({
+      message: `File uploaded successfully.`,
+      version: newVersion,
+      filename: newFileName,
+    });
+  });
+});
 
 // Serve the list of uploaded files on GET /upload
 app.get("/upload", (req, res) => {
@@ -52,63 +84,23 @@ app.get("/upload", (req, res) => {
       );
     });
 
-    // let fileList = files
-    //   .map((file) => `<li><a href="/uploads/${file}">${file}</a></li>`)
-    //   .join("");
-    // const html = `
-    //   <h1>Uploaded Files</h1>
-    //   <ul>${fileList}</ul>
-    // `;
-
+    // Generate version numbers starting from 1.0 for the most recent file
     let otaUpdates = files.map((file, index) => {
       const filePath = path.join(uploadDir, file);
       const stats = fs.statSync(filePath);
       const timestamp = new Date(stats.mtime).toLocaleString(); // Get last modified time
-      const version = file.split("_")[0]; // Extract version from filename
+
+      // Calculate version number with the most recent file as Version 1.0, and increasing
+      const finalVersion = `Version ${(index * 0.1 + 1).toFixed(1)}`;
 
       return {
-        id: index + 1, // Assign the latest file as id=1
+        id: index + 1, // Assign id based on order
         date: timestamp,
-        version: version,
+        version: finalVersion, // Display version number
       };
     });
 
-    // res.send(html);
-    res.json(otaUpdates);
-  });
-});
-
-// Handle file uploads with timestamp renaming
-app.post("/upload", (req, res) => {
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send("No files were uploaded.");
-  }
-
-  const uploadedFile = req.files.file;
-  const uploadDir = path.join(__dirname, "uploads");
-
-  // Get current version and increment it by 0.1
-  let currentVersion = getCurrentVersion(uploadDir);
-  let newVersion = (parseFloat(currentVersion) + 0.1).toFixed(1);
-
-  // Generate new filename with the current timestamp
-  // const timestamp = getCurrentTimestamp();
-  // const newFileName = `${timestamp}_firmware.bin`;
-  // const newVersion = (parseFloat(currentVersion) + 0.1).toFixed(1);
-  // const newFileName = `Version ${newVersion}${path.extname(
-  //   file.originalname
-  // )}_firmware.bin`;
-  // const uploadPath = path.join(__dirname, "uploads", newFileName);
-
-  // Create the new file name with version number, without including the extension
-  const newFileName = `Version ${newVersion}`;
-  const uploadPath = path.join(uploadDir, `${newFileName}`); // Keep original extension in the actual file
-
-  uploadedFile.mv(uploadPath, (err) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    res.send(`File uploaded and renamed to ${newFileName}`);
+    res.json(otaUpdates); // Send the sorted version list
   });
 });
 
@@ -148,9 +140,12 @@ app.get("/latest-firmware", (req, res) => {
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Listen on all available network interfaces and port 4000
-app.listen(5173, "172.28.182.183", () => {
-  console.log("Server started on http://172.28.182.183:5173");
+app.listen(5173, "192.168.2.7", () => {
+  console.log("Server started on http://192.168.2.7:5173");
   console.log(
     "Make sure to use your computer's IP address (not localhost) to access this server from other devices."
   );
 });
+
+// 192.168.0.195
+// 192.168.2.7

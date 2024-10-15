@@ -1,9 +1,9 @@
-// import Image1 from "../../assets/images/monitor.jfif";
-// import Image2 from "../../assets/images/timing.jpg";
-// import Image3 from "../../assets/images/sched.jfif";
-import Image1 from "../../assets/images/kien.jpg";
-import Image2 from "../../assets/images/kien.jpg";
-import Image3 from "../../assets/images/kien.jpg";
+import Image1 from "../../assets/images/monitor.jfif";
+import Image2 from "../../assets/images/timing.jpg";
+import Image3 from "../../assets/images/sched.jfif";
+// import Image1 from "../../assets/images/kien.jpg";
+// import Image2 from "../../assets/images/kien.jpg";
+// import Image3 from "../../assets/images/kien.jpg";
 import Slider from "react-slick";
 
 const ImageList = [
