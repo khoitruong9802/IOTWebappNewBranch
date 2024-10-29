@@ -140,8 +140,8 @@ app.get("/latest-firmware", (req, res) => {
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Listen on all available network interfaces and port 4000
-app.listen(5173, "192.168.2.7", () => {
-  console.log("Server started on http://192.168.2.7:5173");
+app.listen(5173, "10.128.194.193", () => {
+  console.log("Server started on http://10.128.194.193:5173");
   console.log(
     "Make sure to use your computer's IP address (not localhost) to access this server from other devices."
   );
@@ -149,3 +149,4 @@ app.listen(5173, "192.168.2.7", () => {
 
 // 192.168.0.195
 // 192.168.2.7
+// 192.168.2.8

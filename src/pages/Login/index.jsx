@@ -6,6 +6,8 @@ import Loading from "../../components/Loading";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { loginUser } from "../../services/userServices";
+import { GoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 const Login = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
@@ -41,6 +43,36 @@ const Login = () => {
       console.log(err);
     }
     setIsLoading(false);
+  };
+
+  const handleLoginSuccess = async (credentialResponse) => {
+    try {
+      const res = await axios.post("http://localhost:3001/google-login", {
+        token: credentialResponse.credential,
+      });
+
+      const { token } = res.data; // JWT string from backend
+
+      // Optionally decode the token for user information
+      const decodedToken = jwtDecode(token);
+      console.log("Decoded Token:", decodedToken);
+
+      // Store JWT token
+      localStorage.setItem("authToken", decodedToken);
+      alert(`Welcome, ${decodedToken.name || "User"}!`);
+
+      // Redirect to a protected route
+      dispatch(setLoginTrue());
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Login failed, please try again.");
+    }
+  };
+
+  const handleLoginFailure = (error) => {
+    console.error("Login failed:", error);
+    alert("Google login failed. Please try again.");
   };
 
   return (
@@ -112,10 +144,12 @@ const Login = () => {
               <div className="w-[110px] h-[1px] bg-gray-300"></div>
             </div>
 
-            <div className="flex justify-center cursor-pointer">
-              <p className="text-sm font-bold text-gray-500">
-                Log in with Google
-              </p>
+            <div className="flex justify-center">
+              <GoogleLogin
+                onSuccess={handleLoginSuccess}
+                onError={handleLoginFailure}
+                useOneTap
+              />
             </div>
 
             <div className="text-center cursor-pointer">

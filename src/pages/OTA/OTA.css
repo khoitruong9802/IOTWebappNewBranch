@@ -105,7 +105,7 @@ td {
 /* Đặt kích thước cho từng phần */
 .table-container {
   width: 45%;
-  max-height: 400px; /* Đặt chiều cao tối đa */
+  height: 400px;
   overflow-y: auto; /* Cho phép cuộn dọc */
   border: 1px dashed blue;
   padding: 20px;
@@ -113,7 +113,7 @@ td {
   margin: 20px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-left: 50px;
-  margin-bottom: 330px;
+  margin-bottom: 300px;
 }
 
 .table-container h1 {

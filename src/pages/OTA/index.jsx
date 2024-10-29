@@ -8,7 +8,7 @@ function FileUpload() {
 
   const fetchVersion = () => {
     // Fetch the JSON data from the backend
-    fetch("http://localhost:3001/upload")
+    fetch("http://10.128.194.193:5173/upload")
       .then((response) => response.json())
       .then((data) => setUpdates(data))
       .catch((error) => console.error("Error fetching updates:", error));
@@ -33,7 +33,7 @@ function FileUpload() {
 
     // Gửi request với file lên server
     try {
-      const response = await fetch("http://localhost:3001/upload", {
+      const response = await fetch("http://10.128.194.193:5173/upload", {
         method: "POST",
         body: formData,
       });
@@ -69,3 +69,4 @@ export default FileUpload;
 
 // 192.168.1.248: LA
 // 192.168.0.195: KAICoffe
+// 192.168.0.252
